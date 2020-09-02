@@ -31,11 +31,14 @@ default = "Templates"
 }
 
 
-variable "vm-count" {
+variable "vm-node-count" {
 type = string
-description = "Number of VM"
+description = "Number of nodes"
 }
-
+variable "vm-master-count" {
+type = string
+description = "Number of masters"
+}
 variable "vcenter_datastore" {
 type = string
 description = "Datastore used for the vSphere virtual machines"
@@ -49,17 +52,29 @@ type = string
 description = "Use linked clone to create the vSphere virtual machine from the template (true/false). If you would like to use the linked clone feature, your template need to have one and only one snapshot"
 default = "false"
 }
-variable "vm-cpu" {
+variable "vm-node-cpu" {
 type = string
-description = "Number of vCPU for the vSphere virtual machines"
+description = "Number of vCPU for each node"
 }
-variable "vm-ram" {
+variable "vm-node-ram" {
 type = string
-description = "Amount of RAM for the vSphere virtual machines (example: 2048)"
+description = "Amount of RAM for each node"
 }
-variable "vm-name" {
+variable "vm-node-name" {
 type = string
-description = "The name of the vSphere virtual machines and the hostname of the machine"
+description = "Node hostname prefix"
+}
+variable "vm-master-cpu" {
+type = string
+description = "Number of vCPU for each master"
+}
+variable "vm-master-ram" {
+type = string
+description = "Amount of RAM for each master"
+}
+variable "vm-master-name" {
+type = string
+description = "master hostname prefix"
 }
 variable "vm-guest-id" {
 type = string
