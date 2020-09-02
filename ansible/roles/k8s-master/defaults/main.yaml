@@ -1,0 +1,6 @@
+# Master nodes firewall ports
+k8s_master_ports:
+  - 6443
+  - 2379-2380
+  - 10251
+  - 10252

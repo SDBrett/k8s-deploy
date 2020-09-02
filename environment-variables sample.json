@@ -1,0 +1,10 @@
+{
+  "info": "This file is used to store environment specific variables and variables shared between packer and terraform",
+  "esxi_host": "",
+  "vcenter_server": "",
+  "vcenter_username": "",
+  "vcenter_password": "",
+  "datastore": "",
+  "ssh_username": "",
+  "ssh_password": ""
+}

@@ -1,0 +1,13 @@
+---
+# Worker nodes firewall ports
+k8s_worker_ports:
+  - 10250
+  - 30000-32767
+
+# Flannel CNI firewall ports
+flannel_udp_ports:
+- 8285
+- 8472
+
+docker_package: docker-ce-18.06.3.ce-3.el7
+kubelet_package: kubelet-1.19.0-0

@@ -1,0 +1,26 @@
+- name: Install supported version of docker
+  dnf:
+    name: "{{ docker_package }}"
+    update_cache: yes
+    state: present
+
+- name: Create other directories required
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/docker
+    - /etc/systemd/system/docker.service.d
+
+- name: Set cgroup driver as systemd
+  template:
+    src: daemon.repo.j2
+    dest: /etc/docker/daemon.json
+
+- name: Start and enable docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+    daemon_reload: yes
+

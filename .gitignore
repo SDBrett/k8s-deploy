@@ -1,0 +1,7 @@
+*.tfvars
+packer_cache/*
+*.tfstate
+*.tfstate.backup
+.terraform
+inventory
+environment-variables.json

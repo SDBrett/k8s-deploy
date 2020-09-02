@@ -1,0 +1,5 @@
+{
+  "guest_os_type": "centos8_64Guest",
+  "iso_paths": "[datastore2] ISO/CentOS-8.2.2004-x86_64-minimal.iso",
+  "network": "VM Network"
+}

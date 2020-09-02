@@ -1,0 +1,11 @@
+- name: Install kubernetes packages
+  dnf:
+    name: "{{ kubelet_package }}"
+    disable_excludes: kubernetes
+    update_cache: yes
+    state: present
+
+- name: Enable kubelet service
+  service:
+    name: kubelet
+    enabled: yes

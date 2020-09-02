@@ -1,0 +1,58 @@
+{
+  "sensitive-variables": [
+    "vm_password",
+    "ssh_password",
+    "vcenter_password"
+  ],
+  "builders": [
+    {
+      "CPUs": 2,
+      "RAM": 4096,
+      "boot_command": [
+        "<tab> ks=http://172.20.0.206:8080/packer/preseed.cfg<enter><wait>"
+      ],
+      "convert_to_template": "true",
+      "guest_os_type": "{{ user `guest_os_type` }}",
+      "boot_wait": "2s",
+      "http_directory": "http",
+      "cluster": "Cluster",
+      "host": "{{ user `esxi_host` }}",
+      "insecure_connection": "true",
+      "iso_paths": "{{ user `iso_paths` }}",
+      "network_adapters": [
+        {
+          "network": "{{ user `network` }}",
+          "network_card": "vmxnet3"
+        } 
+      ],
+      "password": "{{ user `vcenter_password` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "storage": [
+        {
+          "disk_size": 32768,
+          "disk_thin_provisioned": true
+        }
+      ],
+      "type": "vsphere-iso",
+      "username": "{{ user `vcenter_username` }}",
+      "vcenter_server": "{{ user `vcenter_server` }}",
+      "vm_name": "{{ user `vm_name` }}",
+      "datastore": "{{ user `datastore` }}",
+      "disk_controller_type": "pvscsi",
+      "folder": "Templates"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "../ansible/base.yaml",
+      "user": "vagrant",
+      "ssh_host_key_file": "/home/brett/.ssh/id_rsa",
+      "ansible_env_vars": [
+        "ANSIBLE_HOST_KEY_CHECKING=False",
+        "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'"
+      ]
+    }
+  ]
+}

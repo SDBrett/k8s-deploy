@@ -1,0 +1,26 @@
+---
+
+- name: add vmtools repo
+  template:
+    src: vmware-tools.repo.j2
+    dest: /etc/yum.repos.d/vmware-tools.repo
+
+- name: add kubernetes repo
+  template:
+    src: kubernetes.repo.j2
+    dest: /etc/yum.repos.d/kubernetes.repo
+
+- name: add docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+
+- name: add vmtools dsa key
+  rpm_key:
+    state: present
+    key: https://packages.vmware.com/tools/legacykeys/VMWARE-PACKAGING-GPG-DSA-KEY.pub
+
+- name: add vmtools rsa key
+  rpm_key:
+    state: present
+    key: https://packages.vmware.com/tools/legacykeys/VMWARE-PACKAGING-GPG-RSA-KEY.pub

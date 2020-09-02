@@ -1,0 +1,53 @@
+- name: disable SWAP
+  shell: |
+    swapoff -a
+
+- name: disable SWAP in fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+.*)$'
+    replace: '# \1'
+
+- name: load modules
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - br_netfilter
+    - overlay
+    - ip_vs
+    - ip_vs_rr
+    - ip_vs_wrr
+    - ip_vs_sh
+    - nf_conntrack_ipv4
+
+- name: put SELinux in permissive mode
+  selinux:
+    policy: targeted
+    state: permissive
+
+- name: enable bridging
+  sysctl:
+    name: '{{ item.key }}'
+    value: '{{ item.value }}'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  ignore_errors: True
+  with_items:
+    - {key: net.bridge.bridge-nf-call-ip6tables, value: 1}
+    - {key: net.bridge.bridge-nf-call-iptables,  value: 1}
+    - {key: net.ipv4.ip_forward,  value: 1}
+
+- name: install vmware tools deploypkg
+  dnf:
+    name: open-vm-tools-deploypkg
+    update_cache: yes
+    state: present
+  
+- name: install vmware tools deploypkg
+  dnf:
+    name: cloud-init
+    update_cache: yes
+    state: present
+
