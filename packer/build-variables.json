@@ -1,5 +1,8 @@
 {
+  "append_commit_hash": "true",
+  "overwrite_existing": "true",
   "guest_os_type": "centos8_64Guest",
   "iso_paths": "[datastore2] ISO/CentOS-8.2.2004-x86_64-minimal.iso",
-  "network": "VM Network"
+  "network": "VM Network",
+  "vm_template_name_prefix": "centos8-1.18"
 }

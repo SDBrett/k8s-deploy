@@ -22,6 +22,6 @@ name = var.vm-network
 datacenter_id = data.vsphere_datacenter.dc.id
 }
 data "vsphere_virtual_machine" "template" {
-name = "/${var.vcenter_datacenter}/vm/${var.template_folder}/${var.vm_template_name}"
+name = "/${var.vcenter_datacenter}/vm/${var.template_folder}/${var.template_name}"
 datacenter_id = data.vsphere_datacenter.dc.id
 }

@@ -37,8 +37,8 @@
       "type": "vsphere-iso",
       "username": "{{ user `vcenter_username` }}",
       "vcenter_server": "{{ user `vcenter_server` }}",
-      "vm_name": "{{ user `vm_name` }}",
-      "datastore": "{{ user `datastore` }}",
+      "vm_name": "{{ user `vm_template_name` }}",
+      "datastore": "{{ user `vcenter_datastore` }}",
       "disk_controller_type": "pvscsi",
       "folder": "Templates"
     }

@@ -5,3 +5,4 @@ packer_cache/*
 .terraform
 inventory
 environment-variables.json
+kubeadm/*

@@ -1,0 +1,12 @@
+---
+
+- name: setup dnf
+  import_tasks: dnf.yaml
+
+- name: Configure firewalld
+  import_tasks: firewall.yaml
+  
+- name: setup os
+  import_tasks: os-setup.yaml
+
+

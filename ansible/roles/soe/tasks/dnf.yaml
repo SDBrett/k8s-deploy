@@ -1,0 +1,16 @@
+---
+
+- name: add vmtools repo
+  template:
+    src: vmware-tools.repo.j2
+    dest: /etc/yum.repos.d/vmware-tools.repo
+
+- name: add vmtools dsa key
+  rpm_key:
+    state: present
+    key: https://packages.vmware.com/tools/legacykeys/VMWARE-PACKAGING-GPG-DSA-KEY.pub
+
+- name: add vmtools rsa key
+  rpm_key:
+    state: present
+    key: https://packages.vmware.com/tools/legacykeys/VMWARE-PACKAGING-GPG-RSA-KEY.pub

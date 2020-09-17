@@ -9,5 +9,10 @@ flannel_udp_ports:
 - 8285
 - 8472
 
+kubernetes_version: 1.18.8-0
+
 docker_package: docker-ce-18.06.3.ce-3.el7
-kubelet_package: kubelet-1.19.0-0
+
+kubernetes_packages: 
+- kubelet
+- kubeadm
